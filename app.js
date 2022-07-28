@@ -144,4 +144,27 @@ function search_binary(sortedArr, value) {
 
 //5^2 = 5 ** 2 AND 5^3 = 5 ** 3
 
-console.log(joe);
+function same(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    // each loop will count the frequency of both values in the arrays
+    let frequencyCounter1 = {}
+    let frequencyCounter2 = {}
+    for (let val of arr1) { // ForOf loops loop over values in an object
+        frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+    }
+    for (let val of arr2) {
+        frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1
+    }
+    for (let key in frequencyCounter1) { //ForIn loops loop over keys in an object
+        // if the frequencyCounter1 key is not a key^2 in frequencyCounter2, return false
+        if (!(key ** 2 in frequencyCounter2)) {
+            return false
+        }
+        // if we DO have a key^2 in frequencyCounter2, is the value (in our case matches) equal? IF not, return false
+        if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+            return false
+        }
+    }
+    // passes all conditions
+    return true
+}
