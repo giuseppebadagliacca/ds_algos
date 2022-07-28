@@ -168,3 +168,5 @@ function same(arr1, arr2) {
     // passes all conditions
     return true
 }
+
+//TEST
