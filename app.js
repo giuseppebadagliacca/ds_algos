@@ -137,5 +137,11 @@ function search_binary(sortedArr, value) {
     return sortedArr[middle] === value ? `${value} is found at index ${middle}/${sortedArr.length - 1}` : -1;
 
 }
-console.log(search_binary([2, 5, 6, 9, 13, 15, 28], 15));
+//console.log(search_binary([2, 5, 6, 9, 13, 15, 28], 13));
 
+// FREQUENCY COUNTERS
+// this pattern uses objects or sets to collect values/frequencies of values. This can often avoid the need for nested loops or 0(n^2) operations with arrays/strings
+
+//5^2 = 5 ** 2 AND 5^3 = 5 ** 3
+
+console.log(joe);
