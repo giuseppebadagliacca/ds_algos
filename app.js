@@ -210,7 +210,6 @@ function validAnagrams(string1, string2) {
     }
 
     for (let key in string1Object) {
-        // console.log(string1Object[key], string2Object[key])
         if (string1Object[key] !== string2Object[key]) {
             return false;
         }
