@@ -139,6 +139,32 @@ function search_binary(sortedArr, value) {
 }
 //console.log(search_binary([2, 5, 6, 9, 13, 15, 28], 13));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // FREQUENCY COUNTERS
 // this pattern uses objects or sets to collect values/frequencies of values. This can often avoid the need for nested loops or 0(n^2) operations with arrays/strings
 
@@ -169,4 +195,28 @@ function same(arr1, arr2) {
     return true
 }
 
-//TEST
+
+function validAnagrams(string1, string2) {
+    if (string1.length !== string2.length) return false;
+    const string1Object = {};
+    const string2Object = {};
+
+    for (let val of string1) {
+        string1Object[val] ? string1Object[val] += 1 : string1Object[val] = 1;
+    }
+
+    for (let val of string2) {
+        string2Object[val] ? string2Object[val] += 1 : string2Object[val] = 1;
+    }
+
+    for (let key in string1Object) {
+        // console.log(string1Object[key], string2Object[key])
+        if (string1Object[key] !== string2Object[key]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+console.log(validAnagrams('poopy', 'poooy'));
