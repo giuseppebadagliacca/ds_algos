@@ -165,7 +165,7 @@ function search_binary(sortedArr, value) {
 
 
 
-// FREQUENCY COUNTERS
+// FREQUENCY COUNTERS PATTERN
 // this pattern uses objects or sets to collect values/frequencies of values. This can often avoid the need for nested loops or 0(n^2) operations with arrays/strings
 
 //5^2 = 5 ** 2 AND 5^3 = 5 ** 3
@@ -218,4 +218,41 @@ function validAnagrams(string1, string2) {
     return true;
 }
 
-console.log(validAnagrams('poopy', 'poooy'));
+//console.log(validAnagrams('poopy', 'poooy'));
+
+
+
+//  MULTIPLE POINTERS PATTERN
+//Creating pointers or values that correspond to an index or position and move towards the beginning, end or middle based on a certian condition. Very efficient for solving problems with minial space complexity as well. 
+
+//write a function called sumZero which accepts a sorted array of integers. The fucntion should find the first pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair does not exist. 
+
+function sumZero(sortedArr) {
+    let left = 0;
+    let right = sortedArr.length - 1;
+    while (left < right) {
+        let sum = sortedArr[left] + sortedArr[right];
+        if (sum === 0) {
+            return [sortedArr[left], sortedArr[right]];
+        } else if (sum > 0) {
+            right--;
+        } else {
+            left++;
+        }
+    }
+}
+
+//console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 3, 10]));
+
+function countUniqueValues(arr) {
+    var i = 0;
+    for (let j = 1; j < arr.length; j++) {
+        if (arr[i] !== arr[j]) {
+            i++;
+            arr[i] = arr[j];
+        }
+    }
+    return i + 1;
+}
+
+console.log(countUniqueValues([-1, 0, 1, 1, 2, 3, 3]));
