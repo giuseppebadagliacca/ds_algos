@@ -165,6 +165,8 @@ function search_binary(sortedArr, value) {
 
 
 
+
+
 // FREQUENCY COUNTERS PATTERN
 // this pattern uses objects or sets to collect values/frequencies of values. This can often avoid the need for nested loops or 0(n^2) operations with arrays/strings
 
@@ -245,7 +247,8 @@ function sumZero(sortedArr) {
 //console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 3, 10]));
 
 function countUniqueValues(arr) {
-    var i = 0;
+    if (arr.length === 0) return 0;
+    let i = 0;
     for (let j = 1; j < arr.length; j++) {
         if (arr[i] !== arr[j]) {
             i++;
@@ -255,4 +258,88 @@ function countUniqueValues(arr) {
     return i + 1;
 }
 
-console.log(countUniqueValues([-1, 0, 1, 1, 2, 3, 3]));
+//console.log(countUniqueValues([-1, 0, 1, 1, 2, 3, 3]));
+
+//Write a function called maxSubarraySum which accepts an array of integers and a number called n. The function should calculate the max sum of n consecutive elements in the array. 
+
+function maxSubarraySum(arr, num) {
+    let maxSum = 0;
+    let tempSum = 0;
+
+    if (num > arr.length) return null
+
+    for (let i = 0; i < num; i++) {
+        maxSum += arr[i];
+    }
+    tempSum = maxSum;
+    for (let i = num; i < arr.length; i++) {
+        tempSum = tempSum - arr[i - num] + arr[i];
+        maxSum = Math.max(maxSum, tempSum);
+    }
+    return maxSum;
+}
+
+//console.log(maxSubarraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3));
+
+//Given a sorted array of integers, write a function called search, that accepts a value and returns the index where the value passed to the function is located. If the value is not found, return -1 
+
+
+// divide and conquer
+
+// PRACTICE PROBLEMS 
+
+
+//Write a function called sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits. Your solution MUST have the following complexities: Time: O(N)
+
+function sameFrequency(num1, num2) {
+    num1 = String(num1);
+    num2 = String(num2);
+
+    const num1Object = {};
+    const num2Object = {};
+
+    for (let i = 0; i < num1.length; i++) {
+        num1Object[num1[i]] ? num1Object[num1[i]] += 1 : num1Object[num1[i]] = 1;
+    }
+    for (let i = 0; i < num2.length; i++) {
+        num2Object[num2[i]] ? num2Object[num2[i]] += 1 : num2Object[num2[i]] = 1;
+    }
+
+    for (let key in num1Object) {
+        if (num1Object[key] !== num2Object[key]) {
+            return false
+        }
+    }
+    return true;
+}
+
+// console.log(sameFrequency(182, 281));
+// console.log(sameFrequency(34, 14));
+// console.log(sameFrequency(3589578, 5879385));
+// console.log(sameFrequency(22, 222));
+
+//Write a function called averagePair. Given a sorted array of integers and a target average, determine if there is a pair of values in the array where the average of the pair equals the target average. There may be more than one pair that matches the average target. Constraints: Time: O(N)
+
+function averagePair(arr, average) {
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left < right) {
+        const currentAverage = (arr[left] + arr[right]) / 2;
+
+        if (currentAverage === average) {
+            return true;
+        } else if (currentAverage > average) {
+            right--;
+        } else if (currentAverage < average) {
+            left++;
+        }
+    }
+
+    return false
+}
+
+console.log(averagePair([1, 2, 3], 2.5)) // true
+console.log(averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8)) // true
+console.log(averagePair([-1, 0, 3, 4, 5, 6], 4.1)) // false
+console.log(averagePair([], 4)) // false
